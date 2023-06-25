@@ -19,7 +19,7 @@ class AutomatisierungApp(QMainWindow):
     Sie zeigt eine Tabelle mit den verschobenen Dateien und ermöglicht das Öffnen der Dateien.
     """
 
-    closed = pyqtSignal()  # Signal `closed` in der AutomatisierungApp-Klasse definieren
+    closed = pyqtSignal()
 
     def __init__(self):
         """
@@ -32,7 +32,7 @@ class AutomatisierungApp(QMainWindow):
         self.setWindowTitle("Automatisierung")
         self.setGeometry(100, 100, 500, 500)
 
-        self.table_widget = QTableWidget(self)  # Table Widget zur Anzeige der verschobenen Dateien
+        self.table_widget = QTableWidget(self)
         self.table_widget.setGeometry(10, 10, 480, 480)
         self.table_widget.setColumnCount(2)
         self.table_widget.setHorizontalHeaderLabels(["Dateiname", "Verschiebungszeitpunkt"])
@@ -47,7 +47,7 @@ class AutomatisierungApp(QMainWindow):
 
         self.show()
 
-        self.load_moved_files()  # Lade die zuvor verschobenen Dateien beim Start der App
+        self.load_moved_files()
         self.watch_downloads_fotos()
 
     def watch_downloads_fotos(self):
@@ -66,13 +66,12 @@ class AutomatisierungApp(QMainWindow):
                 target_path = os.path.join(target_dir, filename)
                 shutil.move(file_path, target_path)
 
-                # Aktualisiere die Tabelle der verschobenen Dateien in der GUI
                 timestamp = QDateTime.currentDateTime().toString(Qt.DefaultLocaleLongDate)
                 row_count = self.table_widget.rowCount()
                 self.table_widget.insertRow(row_count)
                 self.table_widget.setItem(row_count, 0, QTableWidgetItem(filename))
                 self.table_widget.setItem(row_count, 1, QTableWidgetItem(timestamp))
-                self.save_moved_file(filename, timestamp)  # Speichere den Dateinamen und den Zeitstempel
+                self.save_moved_file(filename, timestamp)
 
         self.adjust_table_columns()
 
