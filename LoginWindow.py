@@ -10,7 +10,11 @@ Klassen:
 
 """
 
-from PyQt5.QtWidgets import QDialog
+import hashlib
+import json
+import os
+from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout
+
 
 
 class RegisterWindow(QDialog):
@@ -159,11 +163,6 @@ Klassen:
 - LoginWindow: Das Anmeldungs-Fenster.
 
 """
-
-import hashlib
-import json
-import os
-from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout
 
 
 class LoginWindow(QDialog):
