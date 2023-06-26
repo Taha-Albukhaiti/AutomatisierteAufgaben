@@ -15,6 +15,7 @@ from LoginWindow import LoginWindow
 from passwortmanager import PasswordManagerApp, PasswordManager
 from automatisierung import AutomatisierungApp
 import faulthandler
+
 faulthandler.enable()
 
 
@@ -73,10 +74,11 @@ class MainApp(QMainWindow):
         Wenn das Automatisierungsfenster noch nicht geöffnet ist, wird eine neue Instanz erstellt
         und das `closed`-Signal mit der Methode `close_automatisierung_app` verbunden.
         """
-        if not self.automatisierung_app:
-            self.automatisierung_app = AutomatisierungApp()
-            self.automatisierung_app.closed.connect(self.close_automatisierung_app)
-        self.automatisierung_app.show()
+        if self.login_window.logged_in:
+            if not self.automatisierung_app:
+                self.automatisierung_app = AutomatisierungApp()
+                self.automatisierung_app.closed.connect(self.close_automatisierung_app)
+            self.automatisierung_app.show()
 
     def close_automatisierung_app(self):
         """
@@ -93,10 +95,11 @@ class MainApp(QMainWindow):
         Wenn das Passwortmanagerfenster noch nicht geöffnet ist, wird eine neue Instanz erstellt
         und das `closed`-Signal mit der Methode `close_passwortmanager_app` verbunden.
         """
-        if not self.passwortmanager_app:
-            self.passwortmanager_app = PasswordManagerApp(self.password_manager)
-            self.passwortmanager_app.closed.connect(self.close_passwortmanager_app)
-        self.passwortmanager_app.show()
+        if self.login_window.logged_in:
+            if not self.passwortmanager_app:
+                self.passwortmanager_app = PasswordManagerApp(self.password_manager)
+                self.passwortmanager_app.closed.connect(self.close_passwortmanager_app)
+            self.passwortmanager_app.show()
 
     def close_passwortmanager_app(self):
         """

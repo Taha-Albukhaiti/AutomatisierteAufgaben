@@ -16,7 +16,6 @@ import os
 from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout
 
 
-
 class RegisterWindow(QDialog):
     """
     Die Klasse `RegisterWindow` repräsentiert das Registrierungsfenster der Anwendung.
@@ -184,6 +183,7 @@ class LoginWindow(QDialog):
         check_password(username, password): Überprüft das eingegebene Passwort für den angegebenen Benutzer.
         show_message(title, message): Zeigt eine Dialognachricht an.
     """
+    logged_in = False
 
     def __init__(self):
         """
@@ -191,7 +191,9 @@ class LoginWindow(QDialog):
 
         Erstellt das Anmeldungs-Fenster mit den entsprechenden Eingabefeldern und Buttons.
         """
+
         super().__init__()
+
         self.setWindowTitle("Anmeldung")
         self.setGeometry(100, 100, 300, 200)
 
@@ -235,6 +237,7 @@ class LoginWindow(QDialog):
             if self.user_exists(self.username):
                 if self.check_password(self.username, self.password):
                     self.accept()
+                    self.logged_in = True
                 else:
                     self.show_message("Anmeldung fehlgeschlagen", "Falsches Passwort.")
             else:
