@@ -160,7 +160,6 @@ Dieses Modul enthält die `LoginWindow`-Klasse, die das Fenster zur Benutzeranme
 
 Klassen:
 - LoginWindow: Das Anmeldungs-Fenster.
-
 """
 
 
