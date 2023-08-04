@@ -16,6 +16,7 @@ from passwortmanager import PasswordManagerApp, PasswordManager
 from automatisierung import AutomatisierungApp
 import faulthandler
 
+# Fehlerprotokolldetails anzuzeigen.
 faulthandler.enable()
 
 

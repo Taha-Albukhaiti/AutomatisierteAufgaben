@@ -306,5 +306,4 @@ class LoginWindow(QDialog):
         label = QLabel(message, dialog)
         layout.addWidget(label)
         dialog.setLayout(layout)
-
         dialog.exec_()
